@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour
 
     public GUITexture RenderTexture;
     public Camera WorldCamera;
+    public bool Running;
 
     public int TargetX = 160;
     public int TargetY = 200;

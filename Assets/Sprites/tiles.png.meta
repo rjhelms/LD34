@@ -1,13 +1,21 @@
 fileFormatVersion: 2
 guid: 45343170d38f5ed42b01a8845e607854
-timeCreated: 1449938950
+timeCreated: 1449944125
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: tiles_barren_earth
-    21300002: tiles_0
+    21300002: tile_earth
     21300004: tiles_1
     21300006: tiles_2
+    21300008: tile_crop_dead
+    21300010: tiles_4
+    21300012: tile_tower
+    21300014: tile_crop_live
+    21300016: tiles_7
+    21300018: tile_runway
+    21300020: tiles_9
+    21300022: tiles_10
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -54,7 +62,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: tiles_0
+    - name: tile_earth
       rect:
         serializedVersion: 2
         x: 0
@@ -65,7 +73,7 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: tiles_1
+    - name: tile_crop_dead
       rect:
         serializedVersion: 2
         x: 0
@@ -76,12 +84,34 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: tiles_2
+    - name: tile_tower
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 208
+        width: 16
+        height: 48
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: tile_crop_live
       rect:
         serializedVersion: 2
         x: 0
         y: 208
         width: 32
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: tile_runway
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
         height: 16
       alignment: 6
       pivot: {x: 0, y: 0}

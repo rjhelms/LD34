@@ -16,11 +16,13 @@ public class PlayerController : MonoBehaviour
     public float LevelFlightLerpT = 0.25f;
 
     public Sprite[] planeSprites;
+    public Sprite[] crashSprites;
 
     private float currentSpeed;
     private float rotation = 0;
     private Transform sprayArea;
     private bool isStalled;
+    private GameController controller;
 
     #region MonoBehaviours
 
@@ -28,30 +30,28 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         sprayArea = GameObject.Find("SprayArea").transform;
-        currentSpeed = FlightSpeed;
+        currentSpeed = 1;
+        controller = GameObject.Find("GameController").GetComponent<GameController>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (controller.Running)
+        {
+            ProcessInput();
+            FlightDynamics();
+            UpdateSprite();
+            HandleSprayer();
 
-        ProcessInput();
-        FlightDynamics();
-        UpdateSprite();
-        HandleSprayer();
+            // fly plane
+            float xSpeed = Mathf.RoundToInt(Mathf.Cos(rotation * Mathf.Deg2Rad) * currentSpeed);
+            float ySpeed = Mathf.RoundToInt(Mathf.Sin(rotation * Mathf.Deg2Rad) * currentSpeed);
 
-        // fly plane
-        float xSpeed = Mathf.RoundToInt(Mathf.Cos(rotation * Mathf.Deg2Rad) * currentSpeed);
-        float ySpeed = Mathf.RoundToInt(Mathf.Sin(rotation * Mathf.Deg2Rad) * currentSpeed);
-
-        transform.position += new Vector3(xSpeed, ySpeed);
+            transform.position += new Vector3(xSpeed, ySpeed);
+        }
     }
 
-
-    public void OnCollisionStay2D(Collision2D collision)
-    {
-        Debug.Log("Crash! " + collision.gameObject);
-    }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
@@ -60,6 +60,27 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Into terrain!");
             Debug.Log("You lose!");
+            if (rotation < 90 || rotation >= 270)
+            {
+                this.GetComponent<SpriteRenderer>().sprite = crashSprites[0];
+            } else
+            {
+                this.GetComponent<SpriteRenderer>().sprite = crashSprites[1];
+            }
+            controller.Running = false;
+        }
+        
+        if (collision.gameObject.tag == "LevelEnd")
+        {
+            if (rotation < 22f || rotation > 338f)
+            {
+                Debug.Log("Landed!");
+                Debug.Log("You win!");
+                controller.Running = false;
+            } else
+            {
+                Debug.Log("Bad landing angle.");
+            }
         }
     }
 
@@ -73,27 +94,27 @@ public class PlayerController : MonoBehaviour
         {
             // if above critical angle up, reduce speed
             currentSpeed -= AdjustSpeed;
-            Debug.Log("Flying up " + currentSpeed);
+            //Debug.Log("Flying up " + currentSpeed);
         }
 
         else if (rotation > (180 + CriticalAngle) && rotation < (360 - CriticalAngle))
         {
             // if below critical angle down, increase speed
             currentSpeed += AdjustSpeed;
-            Debug.Log("Flying down " + currentSpeed);
+            //Debug.Log("Flying down " + currentSpeed);
         }
 
         else
         {
             // if flying level, lerp back to FlightSpeed
             currentSpeed = Mathf.Lerp(currentSpeed, FlightSpeed, LevelFlightLerpT);
-            Debug.Log("Level " + currentSpeed);
+            //Debug.Log("Level " + currentSpeed);
         }
 
         if (currentSpeed <= StallSpeed && !isStalled)
         {
             isStalled = true;
-            Debug.Log("Stalled!");
+            //Debug.Log("Stalled!");
         }
 
         if (isStalled)
