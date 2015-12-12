@@ -1,10 +1,17 @@
 fileFormatVersion: 2
 guid: 1ef7f432ec42b82428c7d0a4fdbf3497
-timeCreated: 1449894824
+timeCreated: 1449904445
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: plane_0
+    21300002: plane_1
+    21300004: plane_2
+    21300006: plane_3
+    21300008: plane_4
+    21300010: plane_5
+    21300012: plane_6
+    21300014: plane_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -54,21 +61,91 @@ TextureImporter:
     - name: plane_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 168
-        width: 64
-        height: 32
+        x: 1
+        y: 186
+        width: 29
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -24, y: 10}
-        - {x: -29, y: 2}
-        - {x: -29, y: -8}
-        - {x: -23, y: -14}
-        - {x: 11, y: -14}
-        - {x: 32, y: -12}
-        - {x: 32, y: 10}
+      outline: []
+    - name: plane_1
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 173
+        width: 10
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: plane_2
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 173
+        width: 10
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: plane_3
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 172
+        width: 29
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: plane_4
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 152
+        width: 24
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: plane_5
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 152
+        width: 24
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: plane_6
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 136
+        width: 24
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: plane_7
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 136
+        width: 24
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     outline: []
   spritePackingTag: 
   userData: 

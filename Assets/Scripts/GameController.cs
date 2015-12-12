@@ -33,7 +33,7 @@ public class GameController : MonoBehaviour
         }
         else
         {
-            xScale = aspectRatio / pixelRatioAdjustment;
+            xScale = aspectRatio * pixelRatioAdjustment;
             WorldCamera.orthographicSize = TargetY;
         }
 
@@ -62,7 +62,7 @@ public class GameController : MonoBehaviour
             }
             else
             {
-                xScale = aspectRatio / pixelRatioAdjustment;
+                xScale = aspectRatio * pixelRatioAdjustment;
                 WorldCamera.orthographicSize = TargetY;
             }
 
