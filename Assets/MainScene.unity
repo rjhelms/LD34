@@ -643,11 +643,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 6158030, guid: 81c46edf1bdd0f441b53c9ca94375984, type: 2}
       propertyPath: m_Size.x
-      value: 52
+      value: 48
       objectReference: {fileID: 0}
     - target: {fileID: 6158030, guid: 81c46edf1bdd0f441b53c9ca94375984, type: 2}
       propertyPath: m_Offset.x
-      value: 34
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 6158030, guid: 81c46edf1bdd0f441b53c9ca94375984, type: 2}
       propertyPath: m_Size.y

@@ -26,13 +26,16 @@ public class PlayerController : MonoBehaviour
 
     private GameController controller;
 
+    private bool isTakeoff;
+
     #region MonoBehaviours
 
     // Use this for initialization
     void Start()
     {
         sprayArea = GameObject.Find("SprayArea").transform;
-        CurrentSpeed = 1;
+        CurrentSpeed = 0;
+        isTakeoff = true;
         controller = GameObject.Find("GameController").GetComponent<GameController>();
     }
 
@@ -65,13 +68,14 @@ public class PlayerController : MonoBehaviour
             if (rotation < 90 || rotation >= 270)
             {
                 this.GetComponent<SpriteRenderer>().sprite = crashSprites[0];
-            } else
+            }
+            else
             {
                 this.GetComponent<SpriteRenderer>().sprite = crashSprites[1];
             }
             controller.Running = false;
         }
-        
+
         if (collision.gameObject.tag == "LevelEnd")
         {
             if (rotation < 22f || rotation > 338f)
@@ -79,7 +83,8 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Landed!");
                 Debug.Log("You win!");
                 controller.Running = false;
-            } else
+            }
+            else
             {
                 Debug.Log("Bad landing angle.");
             }
@@ -92,48 +97,63 @@ public class PlayerController : MonoBehaviour
 
     private void FlightDynamics()
     {
-        if (rotation > CriticalAngle && rotation < (180 - CriticalAngle))
+        if (isTakeoff)
         {
-            // if above critical angle up, reduce speed
-            CurrentSpeed -= AdjustSpeed;
-            //Debug.Log("Flying up " + currentSpeed);
+            if (CurrentSpeed >= FlightSpeed * 0.9f)
+            {
+                isTakeoff = false;
+            }
+            else
+            {
+                CurrentSpeed = Mathf.Lerp(CurrentSpeed, FlightSpeed, LevelFlightLerpT);
+            }
         }
-
-        else if (rotation > (180 + CriticalAngle) && rotation < (360 - CriticalAngle))
-        {
-            // if below critical angle down, increase speed
-            CurrentSpeed += AdjustSpeed;
-            //Debug.Log("Flying down " + currentSpeed);
-        }
-
         else
         {
-            // if flying level, lerp back to FlightSpeed
-            CurrentSpeed = Mathf.Lerp(CurrentSpeed, FlightSpeed, LevelFlightLerpT);
-            //Debug.Log("Level " + currentSpeed);
-        }
-
-        if (CurrentSpeed <= StallSpeed && !IsStalled)
-        {
-            IsStalled = true;
-            //Debug.Log("Stalled!");
-        }
-
-        if (IsStalled)
-        {
-            if (rotation < 90 || rotation > 270)
+            if (rotation > CriticalAngle && rotation < (180 - CriticalAngle))
             {
-                rotation -= StallRotation;
-                if (rotation < 0) rotation += 360;
+                // if above critical angle up, reduce speed
+                CurrentSpeed -= AdjustSpeed;
+                //Debug.Log("Flying up " + currentSpeed);
             }
-            else if (rotation > 90 || rotation < 270)
+
+            else if (rotation > (180 + CriticalAngle) && rotation < (360 - CriticalAngle))
             {
-                rotation += StallRotation;
+                // if below critical angle down, increase speed
+                CurrentSpeed += AdjustSpeed;
+                //Debug.Log("Flying down " + currentSpeed);
             }
-            if (CurrentSpeed >= OutofStallSpeed)
+
+            else
             {
-                IsStalled = false;
-                Debug.Log("Out of stall!");
+                // if flying level, lerp back to FlightSpeed
+                CurrentSpeed = Mathf.Lerp(CurrentSpeed, FlightSpeed, LevelFlightLerpT);
+                //Debug.Log("Level " + currentSpeed);
+            }
+
+            if (CurrentSpeed <= StallSpeed && !IsStalled)
+            {
+                IsStalled = true;
+                //Debug.Log("Stalled!");
+            }
+
+
+            if (IsStalled)
+            {
+                if (rotation < 90 || rotation > 270)
+                {
+                    rotation -= StallRotation;
+                    if (rotation < 0) rotation += 360;
+                }
+                else if (rotation > 90 || rotation < 270)
+                {
+                    rotation += StallRotation;
+                }
+                if (CurrentSpeed >= OutofStallSpeed)
+                {
+                    IsStalled = false;
+                    Debug.Log("Out of stall!");
+                }
             }
         }
     }
