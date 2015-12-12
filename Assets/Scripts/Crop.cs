@@ -27,6 +27,7 @@ public class Crop : MonoBehaviour
         {
             isLive = true;
             this.GetComponent<SpriteRenderer>().sprite = liveSprite;
+            ScoreManager.Instance.Score += 100;
         }
     }
 }

@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
 
     public Text SpeedText;
     public Text StallText;
+    public Text ScoreText;
 
     public int TargetX = 160;
     public int TargetY = 200;
@@ -46,15 +47,12 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        if (Running)
-        {
-            UpdateUI();
-        }
+        UpdateUI();
     }
 
     public void UpdateUI()
     {
-        SpeedText.text = "Airspeed: " + Mathf.RoundToInt(player.CurrentSpeed * speedFudgeFactor).ToString();
+        SpeedText.text = "AIRSPEED: " + Mathf.RoundToInt(player.CurrentSpeed * speedFudgeFactor).ToString();
 
         if (player.IsStalled)
         {
@@ -72,5 +70,8 @@ public class GameController : MonoBehaviour
             StallText.enabled = false;
             nextStallBlink = -1;
         }
+
+        ScoreText.text = string.Format("SCORE: {0,5}", ScoreManager.Instance.Score);
     }
+
 }
