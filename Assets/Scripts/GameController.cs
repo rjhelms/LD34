@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class GameController : MonoBehaviour
 {
@@ -28,7 +27,6 @@ public class GameController : MonoBehaviour
     void Start()
     {
         pixelRatioAdjustment = (float)TargetX / (float)TargetY;
-        Debug.Log(pixelRatioAdjustment);
         if (pixelRatioAdjustment <= 1)
         {
             RenderTexture.mainTextureScale = new Vector2(pixelRatioAdjustment, 1);

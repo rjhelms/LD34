@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -67,10 +66,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Trigger! " + collision.gameObject);
         if (collision.gameObject.tag == "Terrain")
         {
-            Debug.Log("Into terrain!");
             Debug.Log("You lose!");
             if (rotation < 90 || rotation >= 270)
             {
@@ -91,10 +88,6 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("You win!");
                 ScoreManager.Instance.Score += 50;
                 controller.Running = false;
-            }
-            else
-            {
-                Debug.Log("Bad landing angle.");
             }
         }
     }
@@ -122,7 +115,6 @@ public class PlayerController : MonoBehaviour
             {
                 // if above critical angle up, reduce speed
                 CurrentSpeed -= AdjustSpeed;
-                //Debug.Log("Flying up " + currentSpeed);
             }
 
             else if (rotation > (180 + CriticalAngle) && rotation < (360 - CriticalAngle))
@@ -136,13 +128,11 @@ public class PlayerController : MonoBehaviour
             {
                 // if flying level, lerp back to FlightSpeed
                 CurrentSpeed = Mathf.Lerp(CurrentSpeed, FlightSpeed, LevelFlightLerpT);
-                //Debug.Log("Level " + currentSpeed);
             }
 
             if (CurrentSpeed <= StallSpeed && !IsStalled)
             {
                 IsStalled = true;
-                //Debug.Log("Stalled!");
             }
 
 
@@ -160,7 +150,6 @@ public class PlayerController : MonoBehaviour
                 if (CurrentSpeed >= OutofStallSpeed)
                 {
                     IsStalled = false;
-                    Debug.Log("Out of stall!");
                 }
             }
         }

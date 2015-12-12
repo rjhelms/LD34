@@ -1,7 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Text.RegularExpressions;
+using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
-using System.Text.RegularExpressions;
 
 public class LevelLoader : MonoBehaviour
 {
@@ -55,7 +54,6 @@ public class LevelLoader : MonoBehaviour
         }
 
         CSVHelper csv = new CSVHelper(tiles.ToString(), ",");
-        Debug.Log(csv.Count);
         int lineNum = 0;
         foreach (string[] line in csv)
         {
@@ -64,7 +62,6 @@ public class LevelLoader : MonoBehaviour
             {
                 if (line[i] != string.Empty)
                 {
-                    Debug.Log(line[i]);
                     GameObject newObject = GameObject.Instantiate(prefabObjects[int.Parse(line[i])]);
                     newObject.transform.position = new Vector3(i * GridSize, yCoordinate, 1);
                     newObject.transform.SetParent(LevelTilesParent, true);
@@ -79,7 +76,6 @@ public class LevelLoader : MonoBehaviour
         CSVHelper csv = new CSVHelper(text.ToString(), ",");
         foreach (string[] line in csv)
         {
-            Debug.Log(line.Length);
             GameObject newTextGameObject = GameObject.Instantiate(LevelTextPrefab);
             Text newText = newTextGameObject.GetComponent<Text>();
             newText.text = line[0];
