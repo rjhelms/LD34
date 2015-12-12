@@ -71,7 +71,7 @@ public class GameController : MonoBehaviour
             nextStallBlink = -1;
         }
 
-        ScoreText.text = string.Format("SCORE: {0,5}", ScoreManager.Instance.Score);
+        ScoreText.text = string.Format("LEVEL: {0,5}\nSCORE: {1,5}", ScoreManager.Instance.Level + 1, ScoreManager.Instance.Score);
     }
 
 }
