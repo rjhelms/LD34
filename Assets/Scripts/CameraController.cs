@@ -4,6 +4,7 @@ using System.Collections;
 public class CameraController : MonoBehaviour {
 
     public Transform Player;
+    public float CameraZOffset = -10;
 
 	// Use this for initialization
 	void Start () {
@@ -14,7 +15,7 @@ public class CameraController : MonoBehaviour {
 	void Update () {
         if (Player)
         {
-            transform.position = new Vector3(Player.position.x, Player.position.y, 0);
+            transform.position = new Vector3(Player.position.x, Player.position.y, CameraZOffset);
         }
 	}
 }
