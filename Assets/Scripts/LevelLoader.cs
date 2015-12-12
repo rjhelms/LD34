@@ -18,6 +18,7 @@ public class LevelLoader : MonoBehaviour
     private TextAsset levelTiles;
     private TextAsset levelTilePrefabs;
     private TextAsset levelText;
+    private TextAsset levelEntities;
 
     // Use this for initialization
     void Start()
@@ -26,14 +27,22 @@ public class LevelLoader : MonoBehaviour
         levelTiles = Instantiate(Resources.Load(LevelFolder + levelDef[0], typeof(TextAsset)) as TextAsset);
         levelTilePrefabs = Instantiate(Resources.Load(LevelFolder + levelDef[1], typeof(TextAsset)) as TextAsset);
         levelText = Instantiate(Resources.Load(LevelFolder + levelDef[2], typeof(TextAsset)) as TextAsset);
+        levelEntities = Instantiate(Resources.Load(LevelFolder + levelDef[3], typeof(TextAsset)) as TextAsset);
         LoadLevelTiles(levelTiles, levelTilePrefabs);
         LoadLevelText(levelText);
+        LoadLevelEntities(levelEntities);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void LoadLevelEntities(TextAsset entities)
     {
+        CSVHelper csv = new CSVHelper(entities.ToString(), ",");
 
+        foreach (string[] line in csv)
+        {
+            GameObject newEntity = Instantiate(Resources.Load(PrefabFolder + line[0], typeof(GameObject)) as GameObject);
+            newEntity.transform.position = new Vector2(float.Parse(line[1]), float.Parse(line[2]));
+            newEntity.transform.SetParent(LevelTilesParent.transform, true);
+        }
     }
 
     private void LoadLevelTiles(TextAsset tiles, TextAsset prefabs)

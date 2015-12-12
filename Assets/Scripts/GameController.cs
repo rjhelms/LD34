@@ -41,8 +41,7 @@ public class GameController : MonoBehaviour
             RenderTexture.mainTextureOffset = new Vector2(0, (1 - pixelRatioAdjustment) / 2);
             WorldCamera.orthographicSize = TargetX / 2;
         }
-
-        player = GameObject.Find("Player").GetComponent<PlayerController>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
     void Update()
