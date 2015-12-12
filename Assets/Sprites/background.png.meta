@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 1ef7f432ec42b82428c7d0a4fdbf3497
-timeCreated: 1449894824
+guid: a9c47a6b1301de544858aec778514990
+timeCreated: 1449896299
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: plane_0
+  fileIDToRecycleName: {}
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -39,10 +38,10 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
+  alignment: 6
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 1
@@ -50,25 +49,7 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites:
-    - name: plane_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 168
-        width: 64
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -24, y: 10}
-        - {x: -29, y: 2}
-        - {x: -29, y: -8}
-        - {x: -23, y: -14}
-        - {x: 11, y: -14}
-        - {x: 32, y: -12}
-        - {x: 32, y: 10}
+    sprites: []
     outline: []
   spritePackingTag: 
   userData: 
