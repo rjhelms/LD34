@@ -21,12 +21,17 @@ public class PlayerController : MonoBehaviour
     public Sprite[] planeSprites;
     public Sprite[] crashSprites;
 
+    public float CameraXOffset = 16;
+    public float CameraYOffset = 16;
+    public float CameraZOffset = -10;
+
     private float rotation = 0;
     private Transform sprayArea;
 
     private GameController controller;
 
     private bool isTakeoff;
+    private Transform WorldCamera;
 
     #region MonoBehaviours
 
@@ -37,6 +42,7 @@ public class PlayerController : MonoBehaviour
         CurrentSpeed = 0;
         isTakeoff = true;
         controller = GameObject.Find("GameController").GetComponent<GameController>();
+        WorldCamera = GameObject.Find("WorldCamera").transform;
     }
 
     // Update is called once per frame
@@ -54,6 +60,7 @@ public class PlayerController : MonoBehaviour
             float ySpeed = Mathf.RoundToInt(Mathf.Sin(rotation * Mathf.Deg2Rad) * CurrentSpeed);
 
             transform.position += new Vector3(xSpeed, ySpeed);
+            WorldCamera.position = new Vector3(transform.position.x + CameraXOffset, transform.position.y + CameraYOffset, CameraZOffset);
         }
     }
 
