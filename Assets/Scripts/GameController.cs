@@ -4,71 +4,32 @@ using System.Collections;
 public class GameController : MonoBehaviour
 {
 
-    public GUITexture RenderTexture;
+    public Material RenderTexture;
     public Camera WorldCamera;
     public bool Running;
 
     public int TargetX = 160;
     public int TargetY = 200;
 
-    private Rect screenRect;
-
     private float pixelRatioAdjustment;
 
     // Use this for initialization
     void Start()
     {
-        screenRect = new Rect(0, 0, Screen.width, Screen.height);
-        RenderTexture.pixelInset = screenRect;
-        float aspectRatio = screenRect.width / screenRect.height;
-
         pixelRatioAdjustment = (float)TargetX / (float)TargetY;
-
-        float xScale = 1;
-        float yScale = 1;
-
-        if (TargetX > TargetY)
+        Debug.Log(pixelRatioAdjustment);
+        if (pixelRatioAdjustment <= 1)
         {
-            yScale = aspectRatio * pixelRatioAdjustment;
-            WorldCamera.orthographicSize = TargetX;
-        }
-        else
+            RenderTexture.mainTextureScale = new Vector2(pixelRatioAdjustment, 1);
+            RenderTexture.mainTextureOffset = new Vector2((1 - pixelRatioAdjustment) / 2, 0);
+            WorldCamera.orthographicSize = TargetY / 2;
+        } else
         {
-            xScale = aspectRatio * pixelRatioAdjustment;
-            WorldCamera.orthographicSize = TargetY;
-        }
-
-
-        RenderTexture.transform.localScale = new Vector3(xScale, yScale);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Screen.width != screenRect.width || Screen.height != screenRect.height)
-        {
-            screenRect = new Rect(0, 0, Screen.width, Screen.height);
-            RenderTexture.pixelInset = screenRect;
-            float aspectRatio = screenRect.width / screenRect.height;
-
-            pixelRatioAdjustment = (float)TargetX / (float)TargetY;
-
-            float xScale = 1;
-            float yScale = 1;
-
-            if (TargetX > TargetY)
-            {
-                yScale = aspectRatio * pixelRatioAdjustment;
-                WorldCamera.orthographicSize = TargetX;
-            }
-            else
-            {
-                xScale = aspectRatio * pixelRatioAdjustment;
-                WorldCamera.orthographicSize = TargetY;
-            }
-
-
-            RenderTexture.transform.localScale = new Vector3(xScale, yScale);
+            pixelRatioAdjustment = 1f / pixelRatioAdjustment;
+            RenderTexture.mainTextureScale = new Vector2(1, pixelRatioAdjustment);
+            RenderTexture.mainTextureOffset = new Vector2(0, (1 - pixelRatioAdjustment) / 2);
+            WorldCamera.orthographicSize = TargetX / 2;
         }
     }
+
 }
