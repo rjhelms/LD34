@@ -44,8 +44,8 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Screen.width != screenRect.width || Screen.height != screenRect.height)
-        //{
+        if (Screen.width != screenRect.width || Screen.height != screenRect.height)
+        {
             screenRect = new Rect(0, 0, Screen.width, Screen.height);
             RenderTexture.pixelInset = screenRect;
             float aspectRatio = screenRect.width / screenRect.height;
@@ -68,6 +68,6 @@ public class GameController : MonoBehaviour
 
 
             RenderTexture.transform.localScale = new Vector3(xScale, yScale);
-        //}
+        }
     }
 }

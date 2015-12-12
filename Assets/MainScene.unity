@@ -388,7 +388,7 @@ Transform:
   m_GameObject: {fileID: 1197909528}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.06, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 755769607}
   m_RootOrder: 0
@@ -564,7 +564,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 320
+  orthographic size: 200
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -585,7 +585,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1613052997}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 191.95, y: 16, z: 0}
+  m_LocalPosition: {x: -500, y: 100, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -613,16 +613,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9191284b058eef549b7108b5f04e1117, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intensityMultiplier: 0.25
-  generalIntensity: 0.5
-  blackIntensity: 1
-  whiteIntensity: 1
-  midGrey: 0.2
+  intensityMultiplier: 2
+  generalIntensity: 0.1
+  blackIntensity: 0.52
+  whiteIntensity: 0.22
+  midGrey: 0.62
   dx11Grain: 0
-  softness: 0
-  monochrome: 1
+  softness: 0.59
+  monochrome: 0
   intensities: {x: 1, y: 1, z: 1}
-  tiling: {x: 64, y: 64, z: 64}
+  tiling: {x: 32, y: 32, z: 32}
   monochromeTiling: 64
   filterMode: 1
   noiseTexture: {fileID: 2800000, guid: 7a632f967e8ad42f5bd275898151ab6a, type: 3}
