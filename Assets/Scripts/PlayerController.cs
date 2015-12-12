@@ -12,16 +12,18 @@ public class PlayerController : MonoBehaviour
     public float CriticalAngle = 45;
     public float AdjustSpeed = 0.1f;
     public float StallRotation = 1f;
+    public float CurrentSpeed;
 
     public float LevelFlightLerpT = 0.25f;
+
+    public bool IsStalled = false;
 
     public Sprite[] planeSprites;
     public Sprite[] crashSprites;
 
-    private float currentSpeed;
     private float rotation = 0;
     private Transform sprayArea;
-    private bool isStalled;
+
     private GameController controller;
 
     #region MonoBehaviours
@@ -30,7 +32,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         sprayArea = GameObject.Find("SprayArea").transform;
-        currentSpeed = 1;
+        CurrentSpeed = 1;
         controller = GameObject.Find("GameController").GetComponent<GameController>();
     }
 
@@ -45,8 +47,8 @@ public class PlayerController : MonoBehaviour
             HandleSprayer();
 
             // fly plane
-            float xSpeed = Mathf.RoundToInt(Mathf.Cos(rotation * Mathf.Deg2Rad) * currentSpeed);
-            float ySpeed = Mathf.RoundToInt(Mathf.Sin(rotation * Mathf.Deg2Rad) * currentSpeed);
+            float xSpeed = Mathf.RoundToInt(Mathf.Cos(rotation * Mathf.Deg2Rad) * CurrentSpeed);
+            float ySpeed = Mathf.RoundToInt(Mathf.Sin(rotation * Mathf.Deg2Rad) * CurrentSpeed);
 
             transform.position += new Vector3(xSpeed, ySpeed);
         }
@@ -93,31 +95,31 @@ public class PlayerController : MonoBehaviour
         if (rotation > CriticalAngle && rotation < (180 - CriticalAngle))
         {
             // if above critical angle up, reduce speed
-            currentSpeed -= AdjustSpeed;
+            CurrentSpeed -= AdjustSpeed;
             //Debug.Log("Flying up " + currentSpeed);
         }
 
         else if (rotation > (180 + CriticalAngle) && rotation < (360 - CriticalAngle))
         {
             // if below critical angle down, increase speed
-            currentSpeed += AdjustSpeed;
+            CurrentSpeed += AdjustSpeed;
             //Debug.Log("Flying down " + currentSpeed);
         }
 
         else
         {
             // if flying level, lerp back to FlightSpeed
-            currentSpeed = Mathf.Lerp(currentSpeed, FlightSpeed, LevelFlightLerpT);
+            CurrentSpeed = Mathf.Lerp(CurrentSpeed, FlightSpeed, LevelFlightLerpT);
             //Debug.Log("Level " + currentSpeed);
         }
 
-        if (currentSpeed <= StallSpeed && !isStalled)
+        if (CurrentSpeed <= StallSpeed && !IsStalled)
         {
-            isStalled = true;
+            IsStalled = true;
             //Debug.Log("Stalled!");
         }
 
-        if (isStalled)
+        if (IsStalled)
         {
             if (rotation < 90 || rotation > 270)
             {
@@ -128,9 +130,9 @@ public class PlayerController : MonoBehaviour
             {
                 rotation += StallRotation;
             }
-            if (currentSpeed >= OutofStallSpeed)
+            if (CurrentSpeed >= OutofStallSpeed)
             {
-                isStalled = false;
+                IsStalled = false;
                 Debug.Log("Out of stall!");
             }
         }

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class GameController : MonoBehaviour
@@ -8,10 +9,19 @@ public class GameController : MonoBehaviour
     public Camera WorldCamera;
     public bool Running;
 
+    public Text SpeedText;
+    public Text StallText;
+
     public int TargetX = 160;
     public int TargetY = 200;
 
+    public float StallBlinkTime;
+
+    private PlayerController player;
     private float pixelRatioAdjustment;
+    private float speedFudgeFactor = 33.3f;
+
+    private float nextStallBlink = -1;
 
     // Use this for initialization
     void Start()
@@ -30,6 +40,37 @@ public class GameController : MonoBehaviour
             RenderTexture.mainTextureOffset = new Vector2(0, (1 - pixelRatioAdjustment) / 2);
             WorldCamera.orthographicSize = TargetX / 2;
         }
+
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
+    void Update()
+    {
+        if (Running)
+        {
+            UpdateUI();
+        }
+    }
+
+    public void UpdateUI()
+    {
+        SpeedText.text = "Airspeed: " + Mathf.RoundToInt(player.CurrentSpeed * speedFudgeFactor).ToString();
+
+        if (player.IsStalled)
+        {
+            if (nextStallBlink == -1)
+            {
+                nextStallBlink = Time.time + StallBlinkTime;
+                StallText.enabled = true;
+            } else if (Time.time > nextStallBlink)
+            {
+                StallText.enabled = !StallText.enabled;
+                nextStallBlink = Time.time + StallBlinkTime;
+            }
+        } else
+        {
+            StallText.enabled = false;
+            nextStallBlink = -1;
+        }
+    }
 }
