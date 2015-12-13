@@ -27,6 +27,7 @@ public class GameController : MonoBehaviour
 
     public bool HasWonLevel = false;
     public bool HasDied = false;
+    public bool IsCrashing = false;
 
     public int LevelX = 0;
 
@@ -35,7 +36,6 @@ public class GameController : MonoBehaviour
     private float speedFudgeFactor = 33.3f;
 
     private float nextStallBlink = -1;
-    private bool isCrashing;
     private bool isPlayingCropNoise;
     private float nextLevelTime;
     
@@ -85,11 +85,11 @@ public class GameController : MonoBehaviour
                 SceneManager.LoadScene("MainScene");
             }
         }
-        if (isCrashing)
+        if (IsCrashing)
         {
             if (!gameSoundSource.isPlaying)
             {
-                isCrashing = false;
+                IsCrashing = false;
                 HasDied = true;
                 if (ScoreManager.Instance.Lives > 0)
                 {
@@ -170,7 +170,7 @@ public class GameController : MonoBehaviour
         if (!HasWonLevel)
         {
             Running = false;
-            isCrashing = true;
+            IsCrashing = true;
             gameSoundSource.pitch = 1;
             gameSoundSource.Stop();
             gameSoundSource.PlayOneShot(CrashNoise);
@@ -187,7 +187,7 @@ public class GameController : MonoBehaviour
 
     public void WinLevel()
     {
-        if (!isCrashing)
+        if (!IsCrashing)
         {
             Running = false;
             gameSoundSource.pitch = 1;

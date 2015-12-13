@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float StallSpeed = 1;
     public float OutofStallSpeed = 2.5f;
     public float CriticalAngle = 45;
+    public float LandingAngle = 30f;
     public float AdjustSpeed = 0.1f;
     public float StallRotation = 1f;
     public float CurrentSpeed;
@@ -71,30 +72,36 @@ public class PlayerController : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Terrain")
+        if (!controller.IsCrashing)
         {
-            Debug.Log("You lose!");
-            if (rotation < 90 || rotation >= 270)
+            if (collision.gameObject.tag == "LevelEnd")
             {
-                this.GetComponent<SpriteRenderer>().sprite = crashSprites[0];
+                if (rotation <= LandingAngle || rotation >= 360f - LandingAngle)
+                {
+                    Debug.Log("Landed!");
+                    Debug.Log("You win!");
+                    ScoreManager.Instance.Score += 50;
+                    controller.WinLevel();
+                }
             }
-            else
+        }
+        if (!controller.HasWonLevel)
+        {
+            if (collision.gameObject.tag == "Terrain")
             {
-                this.GetComponent<SpriteRenderer>().sprite = crashSprites[1];
+                Debug.Log("You lose!");
+                if (rotation < 90 || rotation >= 270)
+                {
+                    this.GetComponent<SpriteRenderer>().sprite = crashSprites[0];
+                }
+                else
+                {
+                    this.GetComponent<SpriteRenderer>().sprite = crashSprites[1];
+                }
+                controller.Crash();
             }
-            controller.Crash();
         }
 
-        if (collision.gameObject.tag == "LevelEnd")
-        {
-            if (rotation < 22f || rotation > 338f)
-            {
-                Debug.Log("Landed!");
-                Debug.Log("You win!");
-                ScoreManager.Instance.Score += 50;
-                controller.WinLevel();
-            }
-        }
     }
 
     #endregion MonoBehaviours
