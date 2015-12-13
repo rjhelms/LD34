@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
             {
                 this.GetComponent<SpriteRenderer>().sprite = crashSprites[1];
             }
-            controller.Running = false;
+            controller.Crash();
         }
 
         if (collision.gameObject.tag == "LevelEnd")

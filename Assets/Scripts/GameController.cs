@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
@@ -17,11 +18,23 @@ public class GameController : MonoBehaviour
 
     public float StallBlinkTime;
 
+    public AudioClip EngineNoise;
+    public AudioClip StallNoise;
+    public AudioClip CrashNoise;
+    public AudioClip CropDustNoise;
+
+    public bool HasWonLevel = false;
+    public bool HasDied = false;
+
     private PlayerController player;
     private float pixelRatioAdjustment;
     private float speedFudgeFactor = 33.3f;
 
     private float nextStallBlink = -1;
+    private bool isCrashing;
+    private bool isPlayingCropNoise;
+
+    private AudioSource gameSoundSource;
 
     // Use this for initialization
     void Start()
@@ -32,7 +45,8 @@ public class GameController : MonoBehaviour
             RenderTexture.mainTextureScale = new Vector2(pixelRatioAdjustment, 1);
             RenderTexture.mainTextureOffset = new Vector2((1 - pixelRatioAdjustment) / 2, 0);
             WorldCamera.orthographicSize = TargetY / 2;
-        } else
+        }
+        else
         {
             pixelRatioAdjustment = 1f / pixelRatioAdjustment;
             RenderTexture.mainTextureScale = new Vector2(1, pixelRatioAdjustment);
@@ -40,11 +54,56 @@ public class GameController : MonoBehaviour
             WorldCamera.orthographicSize = TargetX / 2;
         }
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        gameSoundSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
         UpdateUI();
+        if (isCrashing)
+        {
+            if (!gameSoundSource.isPlaying)
+            {
+                isCrashing = false;
+                HasDied = true;
+                ScoreManager.Instance.Lives--;
+                SceneManager.LoadScene("MainScene");
+            }
+        }
+        else if (Running)
+        {
+            if (isPlayingCropNoise)
+            {
+                if (!gameSoundSource.isPlaying)
+                {
+                    gameSoundSource.clip = EngineNoise; // don't know why this is neccessary
+                    gameSoundSource.Play();             // should trigger below but it doesn't
+                    isPlayingCropNoise = false;
+                }
+            }
+            else if (player.IsStalled)
+            {
+                gameSoundSource.pitch = 1;
+                if (gameSoundSource.clip != StallNoise)
+                {
+                    gameSoundSource.clip = StallNoise;
+                    gameSoundSource.loop = true;
+                    gameSoundSource.Play();
+                }
+
+            }
+            else if (!player.IsStalled)
+            {
+                gameSoundSource.pitch = player.CurrentSpeed * .75f;
+                if (gameSoundSource.clip != EngineNoise)
+                {
+                    gameSoundSource.clip = EngineNoise;
+                    gameSoundSource.loop = true;
+                    gameSoundSource.Play();
+                }
+            }
+
+        }
     }
 
     public void UpdateUI()
@@ -57,12 +116,14 @@ public class GameController : MonoBehaviour
             {
                 nextStallBlink = Time.time + StallBlinkTime;
                 StallText.enabled = true;
-            } else if (Time.time > nextStallBlink)
+            }
+            else if (Time.time > nextStallBlink)
             {
                 StallText.enabled = !StallText.enabled;
                 nextStallBlink = Time.time + StallBlinkTime;
             }
-        } else
+        }
+        else
         {
             StallText.enabled = false;
             nextStallBlink = -1;
@@ -71,4 +132,20 @@ public class GameController : MonoBehaviour
         ScoreText.text = string.Format("LEVEL: {0,5}\nSCORE: {1,5}", ScoreManager.Instance.Level + 1, ScoreManager.Instance.Score);
     }
 
+    public void Crash()
+    {
+        Running = false;
+        isCrashing = true;
+        gameSoundSource.pitch = 1;
+        gameSoundSource.Stop();
+        gameSoundSource.PlayOneShot(CrashNoise);
+    }
+
+    public void PlayCropNoise()
+    {
+        isPlayingCropNoise = true;
+        gameSoundSource.pitch = 1;
+        gameSoundSource.Stop();
+        gameSoundSource.PlayOneShot(CropDustNoise);
+    }
 }
