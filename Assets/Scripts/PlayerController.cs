@@ -78,8 +78,8 @@ public class PlayerController : MonoBehaviour
             {
                 if (rotation <= LandingAngle || rotation >= 360f - LandingAngle)
                 {
-                    Debug.Log("Landed!");
-                    Debug.Log("You win!");
+                    // change sprite to level flight one on landing
+                    this.GetComponent<SpriteRenderer>().sprite = planeSprites[0];
                     controller.WinLevel();
                 }
             }
@@ -88,7 +88,6 @@ public class PlayerController : MonoBehaviour
         {
             if (collision.gameObject.tag == "Terrain")
             {
-                Debug.Log("You lose!");
                 if (rotation < 90 || rotation >= 270)
                 {
                     this.GetComponent<SpriteRenderer>().sprite = crashSprites[0];

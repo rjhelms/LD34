@@ -49,7 +49,8 @@ public class GameController : MonoBehaviour
     [Header("Score Balance")]
     public int DustCropScore = 100;
     public int LandingScore = 50;
-    public int MissCropScore = 100;
+    public int MissedCropPenalty = 100;
+    public int CrashPenalty = 500;
 
     private PlayerController player;
     private float pixelRatioAdjustment;
@@ -244,6 +245,12 @@ public class GameController : MonoBehaviour
         if (!HasWonLevel)
         {
             Running = false;
+            ScoreManager.Instance.Score -= CrashPenalty;
+            if (ScoreManager.Instance.Score < 0)
+            {
+                ScoreManager.Instance.Score = 0;
+            }
+
             isPlayingCropNoise = false;
             IsCrashing = true;
             gameSoundSource.pitch = 1;
@@ -308,7 +315,7 @@ public class GameController : MonoBehaviour
                 nextClearStateTime = Time.time + AdvanceTime;
                 break;
             case 3:
-                PenaltyText.text = string.Format("PENALTY FOR\nUNSPRAYED FIELDS {0, 7}", unsprayedCropFields * MissCropScore);
+                PenaltyText.text = string.Format("PENALTY FOR\nUNSPRAYED FIELDS {0, 7}", unsprayedCropFields * MissedCropPenalty);
                 PenaltyText.gameObject.SetActive(true);
                 LevelClearUIState++;
                 nextClearStateTime = Time.time + AdvanceTime;
@@ -321,7 +328,7 @@ public class GameController : MonoBehaviour
                 nextClearStateTime = Time.time + AdvanceTime;
                 break;
             case 5:
-                ScoreManager.Instance.Score -= unsprayedCropFields * MissCropScore;
+                ScoreManager.Instance.Score -= unsprayedCropFields * MissedCropPenalty;
                 if (ScoreManager.Instance.Score < 0) ScoreManager.Instance.Score = 0;
 
                 ClearScoreText.text = string.Format("SCORE {0,18}", ScoreManager.Instance.Score);
