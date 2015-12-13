@@ -787,6 +787,7 @@ MonoBehaviour:
   WinNoise: {fileID: 8300000, guid: bf8c65b20dbf14746937ebe1c8404226, type: 3}
   HasWonLevel: 0
   HasDied: 0
+  LevelX: 0
 --- !u!4 &1315723406
 Transform:
   m_ObjectHideFlags: 0
@@ -813,12 +814,14 @@ MonoBehaviour:
   Levels:
   - {fileID: 4900000, guid: 58cec29361383c444be80a5b7fbda5a0, type: 3}
   - {fileID: 4900000, guid: 75d69f6484b75f747b6ecfdc617dd256, type: 3}
+  - {fileID: 4900000, guid: bebaa6f06e5aafc4b9caef9f87b07104, type: 3}
   LevelFolder: Levels\
   PrefabFolder: Prefabs\
   LevelTextPrefab: {fileID: 100300, guid: b2641c40ce32dc34ca619068ed5ca854, type: 2}
   LevelTextCanvas: {fileID: 68475774}
   LevelTilesParent: {fileID: 94658645}
   GridSize: 16
+  LevelX: 0
 --- !u!82 &1315723408
 AudioSource:
   m_ObjectHideFlags: 0
