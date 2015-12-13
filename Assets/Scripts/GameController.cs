@@ -127,7 +127,7 @@ public class GameController : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Game over!");
+                    SceneManager.LoadScene("GameOver");
                 }
             }
         }
@@ -199,6 +199,7 @@ public class GameController : MonoBehaviour
         if (!HasWonLevel)
         {
             Running = false;
+            isPlayingCropNoise = false;
             IsCrashing = true;
             gameSoundSource.pitch = 1;
             gameSoundSource.Stop();
