@@ -5,7 +5,7 @@ public class ScoreManager : Singleton<ScoreManager>
 {
     protected ScoreManager() { }
 
-    public int Score;
-    public int Lives;
+    public int Score = 0;
+    public int Lives = 3;
     public int Level = 0;
 }

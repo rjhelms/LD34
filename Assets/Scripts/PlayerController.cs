@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Landed!");
                 Debug.Log("You win!");
                 ScoreManager.Instance.Score += 50;
-                controller.Running = false;
+                controller.WinLevel();
             }
         }
     }

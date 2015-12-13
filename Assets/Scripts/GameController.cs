@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     public Text SpeedText;
     public Text StallText;
     public Text ScoreText;
+    public Text LivesText;
 
     public int TargetX = 160;
     public int TargetY = 200;
@@ -22,6 +23,7 @@ public class GameController : MonoBehaviour
     public AudioClip StallNoise;
     public AudioClip CrashNoise;
     public AudioClip CropDustNoise;
+    public AudioClip WinNoise;
 
     public bool HasWonLevel = false;
     public bool HasDied = false;
@@ -33,6 +35,7 @@ public class GameController : MonoBehaviour
     private float nextStallBlink = -1;
     private bool isCrashing;
     private bool isPlayingCropNoise;
+    private float nextLevelTime;
 
     private AudioSource gameSoundSource;
 
@@ -60,14 +63,29 @@ public class GameController : MonoBehaviour
     void Update()
     {
         UpdateUI();
+        if (HasWonLevel)
+        {
+            if (Time.time > nextLevelTime)
+            {
+                ScoreManager.Instance.Level++;
+                SceneManager.LoadScene("MainScene");
+            }
+        }
         if (isCrashing)
         {
             if (!gameSoundSource.isPlaying)
             {
                 isCrashing = false;
                 HasDied = true;
-                ScoreManager.Instance.Lives--;
-                SceneManager.LoadScene("MainScene");
+                if (ScoreManager.Instance.Lives > 0)
+                {
+                    ScoreManager.Instance.Lives--;
+                    SceneManager.LoadScene("MainScene");
+                }
+                else
+                {
+                    Debug.Log("Game over!");
+                }
             }
         }
         else if (Running)
@@ -130,15 +148,19 @@ public class GameController : MonoBehaviour
         }
 
         ScoreText.text = string.Format("LEVEL: {0,5}\nSCORE: {1,5}", ScoreManager.Instance.Level + 1, ScoreManager.Instance.Score);
+        LivesText.text = string.Format("LIVES: {0}", ScoreManager.Instance.Lives);
     }
 
     public void Crash()
     {
-        Running = false;
-        isCrashing = true;
-        gameSoundSource.pitch = 1;
-        gameSoundSource.Stop();
-        gameSoundSource.PlayOneShot(CrashNoise);
+        if (!HasWonLevel)
+        {
+            Running = false;
+            isCrashing = true;
+            gameSoundSource.pitch = 1;
+            gameSoundSource.Stop();
+            gameSoundSource.PlayOneShot(CrashNoise);
+        }
     }
 
     public void PlayCropNoise()
@@ -147,5 +169,18 @@ public class GameController : MonoBehaviour
         gameSoundSource.pitch = 1;
         gameSoundSource.Stop();
         gameSoundSource.PlayOneShot(CropDustNoise);
+    }
+
+    public void WinLevel()
+    {
+        if (!isCrashing)
+        {
+            Running = false;
+            gameSoundSource.pitch = 1;
+            gameSoundSource.Stop();
+            gameSoundSource.PlayOneShot(WinNoise);
+            HasWonLevel = true;
+            nextLevelTime = Time.time + 2;
+        }
     }
 }
