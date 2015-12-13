@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 1ef7f432ec42b82428c7d0a4fdbf3497
-timeCreated: 1449969534
+timeCreated: 1449985042
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -16,6 +16,7 @@ TextureImporter:
     21300018: plane_9
     21300020: plane_10
     21300022: plane_11
+    21300024: plane_12
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -190,6 +191,17 @@ TextureImporter:
         y: 159
         width: 44
         height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: plane_12
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 125
+        width: 42
+        height: 22
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
