@@ -115,7 +115,15 @@ public class GameController : MonoBehaviour
                 if (Input.anyKey)
                 {
                     ScoreManager.Instance.Level++;
-                    SceneManager.LoadScene("MainScene");
+
+                    if (ScoreManager.Instance.Level >= gameObject.GetComponent<LevelLoader>().Levels.Length)
+                    {
+                        SceneManager.LoadScene("WinScreen");
+                    }
+                    else
+                    {
+                        SceneManager.LoadScene("MainScene");
+                    }
                 }
             }
         }
