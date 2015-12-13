@@ -62,6 +62,17 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.KeypadPlus))
+        {
+            ScoreManager.Instance.Level++;
+            SceneManager.LoadScene("MainScene");
+        }
+        if (Input.GetKeyDown(KeyCode.KeypadMinus))
+        {
+            ScoreManager.Instance.Lives++;
+        }
+
         UpdateUI();
         if (HasWonLevel)
         {
