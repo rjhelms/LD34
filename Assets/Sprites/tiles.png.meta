@@ -1,12 +1,12 @@
 fileFormatVersion: 2
 guid: 45343170d38f5ed42b01a8845e607854
-timeCreated: 1449944125
+timeCreated: 1449976583
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: tiles_barren_earth
     21300002: tile_earth
-    21300004: tiles_1
+    21300004: tiles_house_1
     21300006: tiles_2
     21300008: tile_crop_dead
     21300010: tiles_4
@@ -16,10 +16,19 @@ TextureImporter:
     21300018: tile_runway
     21300020: tiles_9
     21300022: tiles_10
+    21300024: tiles_earth_up
+    21300026: tiles_earth_square
+    21300028: tiles_earth_down
+    21300030: tiles_tree_small_1
+    21300032: tiles_tree_small_2
+    21300034: tiles_tree_large
+    21300036: tiles_skyscraper_1_bottom
+    21300038: tiles_skyscraper_1_mid
+    21300040: tiles_skyscraper_1_top
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -112,6 +121,116 @@ TextureImporter:
         x: 0
         y: 192
         width: 64
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: tiles_earth_up
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 240
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: tiles_earth_square
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 240
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: tiles_earth_down
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 240
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: tiles_tree_small_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 224
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: tiles_tree_small_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 224
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: tiles_house_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 208
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: tiles_tree_large
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 16
+        height: 32
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: tiles_skyscraper_1_bottom
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 192
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: tiles_skyscraper_1_mid
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 208
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: tiles_skyscraper_1_top
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 224
+        width: 16
         height: 16
       alignment: 6
       pivot: {x: 0, y: 0}

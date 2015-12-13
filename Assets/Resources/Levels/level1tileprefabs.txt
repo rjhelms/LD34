@@ -2,3 +2,7 @@ RunwayTakeoff
 RunwayLanding
 Tower
 Crop
+Skyscraper1Bottom
+Skyscraper1Mid
+Skyscraper1Top
+TreeLarge
