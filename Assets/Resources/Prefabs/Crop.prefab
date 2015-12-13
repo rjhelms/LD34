@@ -13,7 +13,7 @@ GameObject:
   - 114: {fileID: 11497134}
   m_Layer: 0
   m_Name: Crop
-  m_TagString: Untagged
+  m_TagString: Crop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55,9 +55,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caf3f5fa737cb5b409a32d50a398f4b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deadSprite: {fileID: 21300008, guid: 45343170d38f5ed42b01a8845e607854, type: 3}
-  liveSprite: {fileID: 21300014, guid: 45343170d38f5ed42b01a8845e607854, type: 3}
-  isLive: 0
+  DeadSprite: {fileID: 21300008, guid: 45343170d38f5ed42b01a8845e607854, type: 3}
+  LiveSprite: {fileID: 21300014, guid: 45343170d38f5ed42b01a8845e607854, type: 3}
+  IsLive: 0
 --- !u!212 &21239874
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -118,6 +118,20 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Crop
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: DeadSprite
+      value: 
+      objectReference: {fileID: 21300008, guid: 45343170d38f5ed42b01a8845e607854,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: LiveSprite
+      value: 
+      objectReference: {fileID: 21300014, guid: 45343170d38f5ed42b01a8845e607854,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 111600}

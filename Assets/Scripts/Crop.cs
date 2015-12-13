@@ -4,17 +4,17 @@ using System.Collections;
 public class Crop : MonoBehaviour
 {
 
-    public Sprite deadSprite;
-    public Sprite liveSprite;
+    public Sprite DeadSprite;
+    public Sprite LiveSprite;
 
-    public bool isLive = false;
+    public bool IsLive = false;
 
     private GameController controller;
 
     // Use this for initialization
     void Start()
     {
-        this.GetComponent<SpriteRenderer>().sprite = deadSprite;
+        this.GetComponent<SpriteRenderer>().sprite = DeadSprite;
         controller = GameObject.Find("GameController").GetComponent<GameController>();
     }
 
@@ -28,11 +28,10 @@ public class Crop : MonoBehaviour
     {
         if (collision.gameObject.tag == "Sprayer")
         {
-            if (!isLive)
+            if (!IsLive)
             {
-                isLive = true;
-                this.GetComponent<SpriteRenderer>().sprite = liveSprite;
-                ScoreManager.Instance.Score += 100;
+                IsLive = true;
+                this.GetComponent<SpriteRenderer>().sprite = LiveSprite;
                 controller.PlayCropNoise();
             }
         }

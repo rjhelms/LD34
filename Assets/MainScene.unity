@@ -822,7 +822,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &989560975
 RectTransform:
   m_ObjectHideFlags: 0
@@ -837,7 +837,7 @@ RectTransform:
   m_RootOrder: 4
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 32, y: -120}
+  m_AnchoredPosition: {x: 32, y: -128}
   m_SizeDelta: {x: 320, y: 200}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &989560976
@@ -852,7 +852,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -897,7 +897,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1068983963
 RectTransform:
   m_ObjectHideFlags: 0
@@ -912,7 +912,7 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 32, y: -104}
+  m_AnchoredPosition: {x: 32, y: -112}
   m_SizeDelta: {x: 320, y: 200}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1068983964
@@ -927,7 +927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1060,22 +1060,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RenderTexture: {fileID: 2100000, guid: b0ed5094c4a85124b9203f0be80748bb, type: 2}
   WorldCamera: {fileID: 1613053001}
-  Running: 1
   SpeedText: {fileID: 1872763935}
   StallText: {fileID: 218178878}
   ScoreText: {fileID: 941350869}
   LivesText: {fileID: 987428525}
+  StallBlinkTime: 0.2
+  ClearCanvas: {fileID: 1728977603}
+  TotalText: {fileID: 1740412517}
+  SprayedText: {fileID: 1068983964}
+  PenaltyText: {fileID: 989560976}
+  ClearScoreText: {fileID: 1534161004}
+  AnyKeyText: {fileID: 1874263213}
+  AdvanceTime: 0.5
+  LevelClearUIState: 0
   TargetX: 160
   TargetY: 200
-  StallBlinkTime: 0.2
   EngineNoise: {fileID: 8300000, guid: 914560b6fdf8d904381b5e1a59784092, type: 3}
   StallNoise: {fileID: 8300000, guid: 47d3553239087a949b49594538197432, type: 3}
   CrashNoise: {fileID: 8300000, guid: 1c911b71c25b7c2488bd5cfe7a427ee4, type: 3}
   CropDustNoise: {fileID: 8300000, guid: 7620cf3f886e442499532a327d7c8242, type: 3}
   WinNoise: {fileID: 8300000, guid: bf8c65b20dbf14746937ebe1c8404226, type: 3}
+  Running: 1
   HasWonLevel: 0
   HasDied: 0
+  IsCrashing: 0
   LevelX: 0
+  DustCropScore: 100
+  LandingScore: 50
+  MissCropScore: 100
 --- !u!4 &1315723406
 Transform:
   m_ObjectHideFlags: 0
@@ -1195,12 +1207,12 @@ GameObject:
   - 222: {fileID: 1534161005}
   - 114: {fileID: 1534161004}
   m_Layer: 5
-  m_Name: FiialScoreText
+  m_Name: FinalScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1534161003
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1215,7 +1227,7 @@ RectTransform:
   m_RootOrder: 5
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 32, y: -144}
+  m_AnchoredPosition: {x: 32, y: -152}
   m_SizeDelta: {x: 320, y: 200}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1534161004
@@ -1230,7 +1242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1458,7 +1470,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1740412516
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1473,7 +1485,7 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 32, y: -88}
+  m_AnchoredPosition: {x: 32, y: -96}
   m_SizeDelta: {x: 320, y: 200}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1740412517
@@ -1488,7 +1500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1698,7 +1710,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1874263212
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1713,7 +1725,7 @@ RectTransform:
   m_RootOrder: 6
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 32, y: -160}
+  m_AnchoredPosition: {x: 32, y: -192}
   m_SizeDelta: {x: 320, y: 200}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1874263213
@@ -1728,7 +1740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

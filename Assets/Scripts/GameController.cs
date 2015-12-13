@@ -7,29 +7,46 @@ public class GameController : MonoBehaviour
 
     public Material RenderTexture;
     public Camera WorldCamera;
-    public bool Running;
 
+    [Header("HUD UI Elements")]
     public Text SpeedText;
     public Text StallText;
     public Text ScoreText;
     public Text LivesText;
-
-    public int TargetX = 160;
-    public int TargetY = 200;
-
     public float StallBlinkTime;
 
+    [Header("Level Clear Elements")]
+    public Canvas ClearCanvas;
+    public Text TotalText;
+    public Text SprayedText;
+    public Text PenaltyText;
+    public Text ClearScoreText;
+    public Text AnyKeyText;
+    public float AdvanceTime;
+    public int LevelClearUIState;
+
+    [Header("Resolution")]
+    public int TargetX = 160;
+    public int TargetY = 200;
+    
+    [Header("Audio")]
     public AudioClip EngineNoise;
     public AudioClip StallNoise;
     public AudioClip CrashNoise;
     public AudioClip CropDustNoise;
     public AudioClip WinNoise;
 
+    [Header("Game State")]
+    public bool Running;
     public bool HasWonLevel = false;
     public bool HasDied = false;
     public bool IsCrashing = false;
-
     public int LevelX = 0;
+
+    [Header("Score Balance")]
+    public int DustCropScore = 100;
+    public int LandingScore = 50;
+    public int MissCropScore = 100;
 
     private PlayerController player;
     private float pixelRatioAdjustment;
@@ -37,8 +54,11 @@ public class GameController : MonoBehaviour
 
     private float nextStallBlink = -1;
     private bool isPlayingCropNoise;
-    private float nextLevelTime;
-    
+    private float nextClearStateTime;
+
+    private int totalCropFields;
+    private int unsprayedCropFields;
+
     private AudioSource gameSoundSource;
 
     // Use this for initialization
@@ -79,13 +99,22 @@ public class GameController : MonoBehaviour
         UpdateUI();
         if (HasWonLevel)
         {
-            if (Time.time > nextLevelTime)
+            if (LevelClearUIState < 7)
             {
-                ScoreManager.Instance.Level++;
-                SceneManager.LoadScene("MainScene");
+                if (Time.time > nextClearStateTime)
+                {
+                    AdvanceLevelClearState();
+                }
+            }
+            else {
+                if (Input.anyKey)
+                {
+                    ScoreManager.Instance.Level++;
+                    SceneManager.LoadScene("MainScene");
+                }
             }
         }
-        if (IsCrashing)
+        else if (IsCrashing)
         {
             if (!gameSoundSource.isPlaying)
             {
@@ -180,6 +209,7 @@ public class GameController : MonoBehaviour
     public void PlayCropNoise()
     {
         isPlayingCropNoise = true;
+        ScoreManager.Instance.Score += DustCropScore;
         gameSoundSource.pitch = 1;
         gameSoundSource.Stop();
         gameSoundSource.PlayOneShot(CropDustNoise);
@@ -189,12 +219,74 @@ public class GameController : MonoBehaviour
     {
         if (!IsCrashing)
         {
+            ScoreManager.Instance.Score += LandingScore;
             Running = false;
             gameSoundSource.pitch = 1;
             gameSoundSource.Stop();
             gameSoundSource.PlayOneShot(WinNoise);
             HasWonLevel = true;
-            nextLevelTime = Time.time + 2;
+            nextClearStateTime = Time.time + AdvanceTime;
+            GameObject[] cropFields = GameObject.FindGameObjectsWithTag("Crop");
+            totalCropFields = cropFields.Length;
+            unsprayedCropFields = 0;
+
+            for (int i = 0; i < cropFields.Length; i++)
+            {
+                if (!cropFields[i].GetComponent<Crop>().IsLive)
+                {
+                    unsprayedCropFields++;
+                }
+            }
+        }
+    }
+
+    private void AdvanceLevelClearState()
+    {
+        switch (LevelClearUIState)
+        {
+            case 0:
+                ClearCanvas.gameObject.SetActive(true);
+                LevelClearUIState++;
+                nextClearStateTime = Time.time + AdvanceTime;
+                break;
+            case 1:
+                TotalText.text = string.Format("TOTAL FIELDS {0,11}", totalCropFields);
+                TotalText.gameObject.SetActive(true);
+                LevelClearUIState++;
+                nextClearStateTime = Time.time + AdvanceTime;
+                break;
+            case 2:
+                SprayedText.text = string.Format("FIELDS SPRAYED {0, 9}", totalCropFields - unsprayedCropFields);
+                SprayedText.gameObject.SetActive(true);
+                LevelClearUIState++;
+                nextClearStateTime = Time.time + AdvanceTime;
+                break;
+            case 3:
+                PenaltyText.text = string.Format("PENALTY FOR\nUNSPRAYED FIELDS {0, 7}", unsprayedCropFields * MissCropScore);
+                PenaltyText.gameObject.SetActive(true);
+                LevelClearUIState++;
+                nextClearStateTime = Time.time + AdvanceTime;
+                break;
+            case 4:
+                ClearScoreText.text = string.Format("SCORE {0,18}", ScoreManager.Instance.Score);
+                ClearScoreText.gameObject.SetActive(true);
+                LevelClearUIState++;
+                if (unsprayedCropFields == 0) LevelClearUIState++;  // no need to process the penalty step if there is none
+                nextClearStateTime = Time.time + AdvanceTime;
+                break;
+            case 5:
+                ScoreManager.Instance.Score -= unsprayedCropFields * MissCropScore;
+                if (ScoreManager.Instance.Score < 0) ScoreManager.Instance.Score = 0;
+
+                ClearScoreText.text = string.Format("SCORE {0,18}", ScoreManager.Instance.Score);
+                PenaltyText.text = string.Format("PENALTY FOR\nUNSPRAYED FIELDS {0, 7}", 0);
+                LevelClearUIState++;
+                nextClearStateTime = Time.time + AdvanceTime;
+                break;
+            case 6:
+                AnyKeyText.gameObject.SetActive(true);
+                LevelClearUIState++;
+                break;
         }
     }
 }
