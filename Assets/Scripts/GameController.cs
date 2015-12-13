@@ -96,6 +96,11 @@ public class GameController : MonoBehaviour
             ScoreManager.Instance.Lives++;
         }
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
         UpdateUI();
         if (HasWonLevel)
         {

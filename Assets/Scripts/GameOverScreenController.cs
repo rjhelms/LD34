@@ -48,6 +48,10 @@ public class GameOverScreenController : MonoBehaviour {
                 // presumably the title screen is the first one
                 SceneManager.LoadScene(0);
             }
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Application.Quit();                                 // for in standalone build
+            }
         }
 	}
 }
