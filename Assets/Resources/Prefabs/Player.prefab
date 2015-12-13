@@ -162,6 +162,7 @@ MonoBehaviour:
   CameraXOffset: 16
   CameraYOffset: 16
   CameraZOffset: -10
+  EarthXOffest: -64
 --- !u!212 &21241562
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -206,6 +207,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: EarthXOffest
+      value: -64
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
