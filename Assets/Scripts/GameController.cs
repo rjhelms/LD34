@@ -35,12 +35,15 @@ public class GameController : MonoBehaviour
     public AudioClip CrashNoise;
     public AudioClip CropDustNoise;
     public AudioClip WinNoise;
+    public AudioClip MusicMainTheme;
+    public GameObject MusicPlayerPrefab;
 
     [Header("Game State")]
-    public bool Running;
+    public bool Running = false;
     public bool HasWonLevel = false;
     public bool HasDied = false;
     public bool IsCrashing = false;
+    public bool Starting = true;
     public int LevelX = 0;
 
     [Header("Score Balance")]
@@ -81,6 +84,27 @@ public class GameController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         LevelX = GetComponent<LevelLoader>().LevelX;
         gameSoundSource = GetComponent<AudioSource>();
+
+        GameObject musicPlayer;
+        if (!GameObject.FindGameObjectWithTag("Music"))
+        {
+            musicPlayer = Instantiate(MusicPlayerPrefab);
+            DontDestroyOnLoad(musicPlayer);
+        }
+        else
+        {
+            musicPlayer = GameObject.FindGameObjectWithTag("Music");
+        }
+
+        AudioSource musicPlayerSource = musicPlayer.GetComponent<AudioSource>();
+        if (musicPlayerSource.clip != MusicMainTheme)
+        {
+            musicPlayerSource.Stop();
+            musicPlayerSource.clip = MusicMainTheme;
+            musicPlayerSource.Play();
+        }
+
+        Starting = true;
     }
 
     void Update()
@@ -176,7 +200,15 @@ public class GameController : MonoBehaviour
                     gameSoundSource.Play();
                 }
             }
-
+        }
+        else if (Starting)
+        {
+            if (Input.anyKeyDown)
+            {
+                Starting = false;
+                Running = true;
+                gameSoundSource.Play();
+            }
         }
     }
 

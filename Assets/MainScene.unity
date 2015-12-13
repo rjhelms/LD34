@@ -1080,10 +1080,13 @@ MonoBehaviour:
   CrashNoise: {fileID: 8300000, guid: 1c911b71c25b7c2488bd5cfe7a427ee4, type: 3}
   CropDustNoise: {fileID: 8300000, guid: 7620cf3f886e442499532a327d7c8242, type: 3}
   WinNoise: {fileID: 8300000, guid: bf8c65b20dbf14746937ebe1c8404226, type: 3}
-  Running: 1
+  MusicMainTheme: {fileID: 8300000, guid: b16aacfaedc2d704f819f2488fd60062, type: 3}
+  MusicPlayerPrefab: {fileID: 159164, guid: e8b30a06c1b0e804c8a31defc1d517e3, type: 2}
+  Running: 0
   HasWonLevel: 0
   HasDied: 0
   IsCrashing: 0
+  Starting: 0
   LevelX: 0
   DustCropScore: 100
   LandingScore: 50
@@ -1132,7 +1135,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 914560b6fdf8d904381b5e1a59784092, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1

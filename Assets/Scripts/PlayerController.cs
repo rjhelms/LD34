@@ -64,9 +64,9 @@ public class PlayerController : MonoBehaviour
             float ySpeed = Mathf.RoundToInt(Mathf.Sin(rotation * Mathf.Deg2Rad) * CurrentSpeed);
 
             transform.position += new Vector3(xSpeed, ySpeed);
-            worldCameraTransform.position = new Vector3(transform.position.x + CameraXOffset, transform.position.y + CameraYOffset, CameraZOffset);
-            earthTransform.position = new Vector3(transform.position.x + EarthXOffest, earthTransform.position.y, earthTransform.position.z);
         }
+        worldCameraTransform.position = new Vector3(transform.position.x + CameraXOffset, transform.position.y + CameraYOffset, CameraZOffset);
+        earthTransform.position = new Vector3(transform.position.x + EarthXOffest, earthTransform.position.y, earthTransform.position.z);
     }
 
 

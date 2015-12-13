@@ -23,6 +23,10 @@ public class WinScreenController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();                                 // for in standalone build
+        }
         if (!isReady)
         {
             if (Time.time > ReadyTime)
@@ -33,11 +37,8 @@ public class WinScreenController : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                Application.Quit();                                 // for in standalone build
-            }
-            else if (Input.anyKeyDown)
+
+            if (Input.anyKeyDown)
             {
                 // reset score lives & level, and go back to scene 0
                 // in a just world this would redundant, but this is Ludum Dare

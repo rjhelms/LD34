@@ -7,6 +7,7 @@ public class GameOverScreenController : MonoBehaviour {
 
     public Text ScoreText;
     public Text InstructionText;
+    public AudioClip GameOverTheme;
 
     public float WaitTime = 1f;
 
@@ -17,11 +18,24 @@ public class GameOverScreenController : MonoBehaviour {
 	void Start () {
         ScoreText.text = string.Format("FINAL SCORE {0,12}", ScoreManager.Instance.Score);
         ReadyTime = Time.time + WaitTime;
+
+        GameObject musicPlayer = GameObject.FindGameObjectWithTag("Music");
+        AudioSource musicPlayerSource = musicPlayer.GetComponent<AudioSource>();
+        if (musicPlayerSource.clip != GameOverTheme)
+        {
+            musicPlayerSource.Stop();
+            musicPlayerSource.clip = GameOverTheme;
+            musicPlayerSource.Play();
+        }
     }
 	
 	// Update is called once per frame
 	void Update () {
-	    if (!isReady)
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();                                 // for in standalone build
+        }
+        if (!isReady)
         {
             if (Time.time > ReadyTime)
             {
@@ -48,10 +62,7 @@ public class GameOverScreenController : MonoBehaviour {
                 // presumably the title screen is the first one
                 SceneManager.LoadScene(0);
             }
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                Application.Quit();                                 // for in standalone build
-            }
+
         }
 	}
 }

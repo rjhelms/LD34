@@ -960,7 +960,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2016553411}
-  - 114: {fileID: 2016553410}
   - 114: {fileID: 2016553412}
   m_Layer: 0
   m_Name: TitleScreenController
@@ -969,20 +968,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2016553410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2016553409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 571f7829db40a304dae960f180e30949, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ScoreText: {fileID: 0}
-  InstructionText: {fileID: 0}
-  WaitTime: 1
 --- !u!4 &2016553411
 Transform:
   m_ObjectHideFlags: 0
@@ -1006,6 +991,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3679bd66fcad8fd4c8860d784b8cf1c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MusicPlayerPrefab: {fileID: 159164, guid: e8b30a06c1b0e804c8a31defc1d517e3, type: 2}
+  MusicMainTheme: {fileID: 8300000, guid: b16aacfaedc2d704f819f2488fd60062, type: 3}
 --- !u!1 &2111819788
 GameObject:
   m_ObjectHideFlags: 0
