@@ -709,6 +709,7 @@ MonoBehaviour:
   EngineNoise: {fileID: 8300000, guid: 914560b6fdf8d904381b5e1a59784092, type: 3}
   StallNoise: {fileID: 8300000, guid: 47d3553239087a949b49594538197432, type: 3}
   CrashNoise: {fileID: 8300000, guid: 1c911b71c25b7c2488bd5cfe7a427ee4, type: 3}
+  CropDustNoise: {fileID: 8300000, guid: 7620cf3f886e442499532a327d7c8242, type: 3}
   HasWonLevel: 0
   HasDied: 0
 --- !u!4 &1315723406
