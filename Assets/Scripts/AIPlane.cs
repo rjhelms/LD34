@@ -16,6 +16,9 @@ public class AIPlane : MonoBehaviour {
 	    if (controller.Running)
         {
             transform.position += Vector3.left * FlightSpeed;
+            if (transform.position.x < -16)
+                transform.position = new Vector3(controller.LevelX + 16, transform.position.y, transform.position.z);
+
         }
 	}
 }

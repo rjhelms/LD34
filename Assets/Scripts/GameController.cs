@@ -28,6 +28,8 @@ public class GameController : MonoBehaviour
     public bool HasWonLevel = false;
     public bool HasDied = false;
 
+    public int LevelX = 0;
+
     private PlayerController player;
     private float pixelRatioAdjustment;
     private float speedFudgeFactor = 33.3f;
@@ -36,7 +38,7 @@ public class GameController : MonoBehaviour
     private bool isCrashing;
     private bool isPlayingCropNoise;
     private float nextLevelTime;
-
+    
     private AudioSource gameSoundSource;
 
     // Use this for initialization
@@ -57,6 +59,7 @@ public class GameController : MonoBehaviour
             WorldCamera.orthographicSize = TargetX / 2;
         }
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        LevelX = GetComponent<LevelLoader>().LevelX;
         gameSoundSource = GetComponent<AudioSource>();
     }
 

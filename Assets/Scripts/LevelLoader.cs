@@ -13,6 +13,7 @@ public class LevelLoader : MonoBehaviour
     public Transform LevelTilesParent;
 
     public int GridSize = 16;
+    public int LevelX;
 
     private TextAsset levelTiles;
     private TextAsset levelTilePrefabs;
@@ -55,9 +56,14 @@ public class LevelLoader : MonoBehaviour
 
         CSVHelper csv = new CSVHelper(tiles.ToString(), ",");
         int lineNum = 0;
+        LevelX = 0;
         foreach (string[] line in csv)
         {
             int yCoordinate = (csv.Count - (lineNum + 1)) * GridSize;
+            if (line.Length > LevelX)
+            {
+                LevelX = line.Length;
+            }
             for (int i = 0; i < line.Length; i++)
             {
                 if (line[i] != string.Empty)
@@ -69,6 +75,8 @@ public class LevelLoader : MonoBehaviour
             }
             lineNum++;
         }
+
+        LevelX *= 16;
     }
 
     private void LoadLevelText(TextAsset text)
