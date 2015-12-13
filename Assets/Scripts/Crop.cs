@@ -28,10 +28,13 @@ public class Crop : MonoBehaviour
     {
         if (collision.gameObject.tag == "Sprayer")
         {
-            isLive = true;
-            this.GetComponent<SpriteRenderer>().sprite = liveSprite;
-            ScoreManager.Instance.Score += 100;
-            controller.PlayCropNoise();
+            if (!isLive)
+            {
+                isLive = true;
+                this.GetComponent<SpriteRenderer>().sprite = liveSprite;
+                ScoreManager.Instance.Score += 100;
+                controller.PlayCropNoise();
+            }
         }
     }
 }
