@@ -1,4 +1,4 @@
 level1tiles
-level1tileprefabs
+leveltileprefabs
 level1text
 level1entities
