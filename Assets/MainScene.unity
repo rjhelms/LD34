@@ -468,8 +468,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4739c22ef73ad62488fe344c8fe9addd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strengthX: 0.25
-  strengthY: 0.25
+  strengthX: 0.2
+  strengthY: 0.2
   fishEyeShader: {fileID: 4800000, guid: 874ceab4425f64bccb1d14032f4452b1, type: 3}
 --- !u!114 &755769609
 MonoBehaviour:
@@ -566,7 +566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9960785, g: 0.9960785, b: 0.9960785, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -593,6 +593,79 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 941350867}
+--- !u!1 &987428523
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 987428524}
+  - 222: {fileID: 987428526}
+  - 114: {fileID: 987428525}
+  m_Layer: 5
+  m_Name: LivesText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &987428524
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 987428523}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 0.5, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1826056994}
+  m_RootOrder: 3
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -8, y: -16}
+  m_SizeDelta: {x: 320, y: 8}
+  m_Pivot: {x: 0, y: 0}
+--- !u!114 &987428525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 987428523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: f081f68be90625b41bea83e902047cf3, type: 3}
+    m_FontSize: 8
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 2
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'LIVES: 3'
+--- !u!222 &987428526
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 987428523}
 --- !u!1 &1197909528
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,6 +776,7 @@ MonoBehaviour:
   SpeedText: {fileID: 1872763935}
   StallText: {fileID: 218178878}
   ScoreText: {fileID: 941350869}
+  LivesText: {fileID: 987428525}
   TargetX: 160
   TargetY: 200
   StallBlinkTime: 0.2
@@ -710,6 +784,7 @@ MonoBehaviour:
   StallNoise: {fileID: 8300000, guid: 47d3553239087a949b49594538197432, type: 3}
   CrashNoise: {fileID: 8300000, guid: 1c911b71c25b7c2488bd5cfe7a427ee4, type: 3}
   CropDustNoise: {fileID: 8300000, guid: 7620cf3f886e442499532a327d7c8242, type: 3}
+  WinNoise: {fileID: 8300000, guid: bf8c65b20dbf14746937ebe1c8404226, type: 3}
   HasWonLevel: 0
   HasDied: 0
 --- !u!4 &1315723406
@@ -737,6 +812,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Levels:
   - {fileID: 4900000, guid: 58cec29361383c444be80a5b7fbda5a0, type: 3}
+  - {fileID: 4900000, guid: 75d69f6484b75f747b6ecfdc617dd256, type: 3}
   LevelFolder: Levels\
   PrefabFolder: Prefabs\
   LevelTextPrefab: {fileID: 100300, guid: b2641c40ce32dc34ca619068ed5ca854, type: 2}
@@ -935,6 +1011,7 @@ RectTransform:
   - {fileID: 1872763934}
   - {fileID: 218178877}
   - {fileID: 941350868}
+  - {fileID: 987428524}
   m_Father: {fileID: 1613053002}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
@@ -1043,7 +1120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9960785, g: 0.9960785, b: 0.9960785, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
