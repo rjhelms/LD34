@@ -157,7 +157,7 @@ GameObject:
   - 222: {fileID: 341442289}
   - 114: {fileID: 341442288}
   m_Layer: 5
-  m_Name: GameOverText
+  m_Name: WinText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,7 +178,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 80, y: -80}
-  m_SizeDelta: {x: 64, y: 64}
+  m_SizeDelta: {x: 160, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &341442288
 MonoBehaviour:
@@ -212,7 +212,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: GAME OVER
+  m_Text: A WINNER IS YOU
 --- !u!222 &341442289
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -265,7 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.73333335, g: 0.73333335, b: 0.73333335, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -591,7 +591,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -830,7 +830,7 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 40, y: -152}
+  m_AnchoredPosition: {x: 48, y: -144}
   m_SizeDelta: {x: 320, y: 200}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1874263213
@@ -845,7 +845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -865,11 +865,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'PRESS UP TO CONTINUE
-
-    PRESS DOWN TO RESTART
-
-    PRESS ESC TO QUIT'
+  m_Text: "PRESS ESC TO QUIT\n\nPRESS ANY OTHER KEY \nTO PLAY AGAIN"
 --- !u!222 &1874263214
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -886,7 +882,7 @@ GameObject:
   - 4: {fileID: 2016553411}
   - 114: {fileID: 2016553410}
   m_Layer: 0
-  m_Name: GameOverScreenController
+  m_Name: WinScreenController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -900,7 +896,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2016553409}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e303f5441f1662743a5e8828a711b951, type: 3}
+  m_Script: {fileID: 11500000, guid: 571f7829db40a304dae960f180e30949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreText: {fileID: 1534161004}
