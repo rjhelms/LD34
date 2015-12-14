@@ -184,7 +184,6 @@ public class PlayerController : MonoBehaviour
 
     private void ProcessInput()
     {
-        Debug.Log(Input.GetAxis("Vertical"));
         rotation -= Input.GetAxis("Vertical") * RotationSpeed;
 
         if (rotation < 0)
