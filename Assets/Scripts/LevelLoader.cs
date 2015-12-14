@@ -23,7 +23,7 @@ public class LevelLoader : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        string[] levelDef = Regex.Split(Levels[ScoreManager.Instance.Level].ToString(), System.Environment.NewLine);
+        string[] levelDef = Regex.Split(Levels[ScoreManager.Instance.Level].ToString(), "\r\n");
         levelTiles = Instantiate(Resources.Load(LevelFolder + levelDef[0], typeof(TextAsset)) as TextAsset);
         levelTilePrefabs = Instantiate(Resources.Load(LevelFolder + levelDef[1], typeof(TextAsset)) as TextAsset);
         levelText = Instantiate(Resources.Load(LevelFolder + levelDef[2], typeof(TextAsset)) as TextAsset);
@@ -47,7 +47,7 @@ public class LevelLoader : MonoBehaviour
 
     private void LoadLevelTiles(TextAsset tiles, TextAsset prefabs)
     {
-        string[] prefabDef = Regex.Split(prefabs.ToString(), System.Environment.NewLine);
+        string[] prefabDef = Regex.Split(prefabs.ToString(), "\r\n");
         GameObject[] prefabObjects = new GameObject[prefabDef.Length];
         for (int i = 0; i < prefabDef.Length; i++)
         {
