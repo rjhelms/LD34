@@ -992,7 +992,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MusicPlayerPrefab: {fileID: 159164, guid: e8b30a06c1b0e804c8a31defc1d517e3, type: 2}
-  MusicMainTheme: {fileID: 8300000, guid: 8b9f3b1dafdb042499dbbfafbcdeb835, type: 3}
+  MusicMainTheme: {fileID: 8300000, guid: ef7edff705f3a154bb7e076050f64d48, type: 3}
 --- !u!1 &2111819788
 GameObject:
   m_ObjectHideFlags: 0

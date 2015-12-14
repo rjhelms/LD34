@@ -905,7 +905,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScoreText: {fileID: 1534161004}
   InstructionText: {fileID: 1874263213}
-  GameOverTheme: {fileID: 8300000, guid: 8b9f3b1dafdb042499dbbfafbcdeb835, type: 3}
+  GameOverTheme: {fileID: 8300000, guid: ef7edff705f3a154bb7e076050f64d48, type: 3}
   WaitTime: 1
 --- !u!4 &2016553411
 Transform:
