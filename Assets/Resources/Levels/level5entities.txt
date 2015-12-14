@@ -1,0 +1,16 @@
+Player,136,166
+Planes\GeneralAviation,300,112
+Planes\GeneralAviation,800,112
+Planes\GeneralAviation,1300,112
+Planes\GeneralAviation,1800,112
+Planes\GeneralAviation,267,48
+Planes\GeneralAviation,600,48
+Planes\GeneralAviation,933,48
+Planes\GeneralAviation,1266,48
+Planes\GeneralAviation,1600,48
+Planes\GeneralAviation,1933,48
+Planes\747,500,256
+Planes\747,1000,256
+Planes\747,1500,256
+Planes\747,2000,256
+Planes\Zeppelin,760,304
