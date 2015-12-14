@@ -42,7 +42,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 8, y: 8}
   serializedVersion: 2
-  m_Size: {x: 16, y: 16}
+  m_Size: {x: 15, y: 16}
 --- !u!212 &21259606
 SpriteRenderer:
   m_ObjectHideFlags: 1

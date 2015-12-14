@@ -12,3 +12,4 @@ EarthDown
 House1
 TreeSmall1
 TreeSmall2
+Cloud

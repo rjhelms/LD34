@@ -46,8 +46,8 @@ PolygonCollider2D:
     - - {x: 0, y: 16}
       - {x: 0, y: 0}
       - {x: 16, y: 0}
-      - {x: 16, y: 3}
-      - {x: 3, y: 16}
+      - {x: 15.807419, y: 1.1704615}
+      - {x: 0.8815899, y: 15.903709}
 --- !u!212 &21286332
 SpriteRenderer:
   m_ObjectHideFlags: 1

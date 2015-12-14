@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 45343170d38f5ed42b01a8845e607854
-timeCreated: 1449976583
+timeCreated: 1450050922
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -25,6 +25,7 @@ TextureImporter:
     21300036: tiles_skyscraper_1_bottom
     21300038: tiles_skyscraper_1_mid
     21300040: tiles_skyscraper_1_top
+    21300042: cloud
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -236,6 +237,24 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+    - name: cloud
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 32
+        height: 32
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 6, y: 29}
+        - {x: 1, y: 28}
+        - {x: 1, y: 4}
+        - {x: 27, y: 4}
+        - {x: 32, y: 7}
+        - {x: 32, y: 27}
+        - {x: 31, y: 29}
     outline: []
   spritePackingTag: 
   userData: 
